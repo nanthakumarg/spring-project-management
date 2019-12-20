@@ -19,7 +19,7 @@ public class Project {
 	
 	private String name;
 	
-	private String stage; //NOTSTARTED, COMPLETED, INPROGRESS
+	private String stage; //NOTSTARTED, COMPLETED, INPROGRESS, STARTED
 	
 	private String description;
 
