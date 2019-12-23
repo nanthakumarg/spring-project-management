@@ -5,10 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,7 +17,7 @@ import javax.persistence.Id;
 public class Project {
 	
 	@Id
-	@GeneratedValue( strategy = GenerationType.AUTO)
+	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private Long projectId;
 	
 	private String name;
@@ -27,14 +26,28 @@ public class Project {
 	
 	private String description;
 
+	//@OneToMany(mappedBy = "project")
+	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
+			fetch = FetchType.LAZY)
+	@JoinTable(name = "project_employee",
+				joinColumns = @JoinColumn(name = "project_id"),
+				inverseJoinColumns = @JoinColumn(name = "employee_id")
+	)
+	private List<Employee> employees;
+
 	public Project(String name, String stage, String description) {
 		super();
 		this.name = name;
 		this.stage = stage;
 		this.description = description;
-	} 
-	
-	
-	
-	
+	}
+
+
+	public void addEmployee(Employee employee) {
+		if(employees == null)
+			employees = new ArrayList<>(10);
+
+		employees.add(employee);
+
+	}
 }

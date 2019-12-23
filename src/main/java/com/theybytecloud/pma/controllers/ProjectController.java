@@ -1,6 +1,8 @@
 package com.theybytecloud.pma.controllers;
 
+import com.theybytecloud.pma.dao.EmployeeRepository;
 import com.theybytecloud.pma.dao.ProjectRepository;
+import com.theybytecloud.pma.entities.Employee;
 import com.theybytecloud.pma.entities.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ public class ProjectController {
 	@Autowired
 	ProjectRepository projectRepository;
 
+	@Autowired
+	EmployeeRepository employeeRepository;
+
 	@GetMapping
 	public String diplayProjects(Model model) {
 		List<Project> projects = projectRepository.findAll();
@@ -32,6 +37,10 @@ public class ProjectController {
 		Project project = new Project();
 		model.addAttribute("project", project);
 
+		List<Employee> employees = employeeRepository.findAll();
+
+		model.addAttribute("allEmployees", employees);
+
 		return "projects/new-project";
 	}
 
@@ -40,6 +49,6 @@ public class ProjectController {
 
 		projectRepository.save(project);
 
-		return "redirect:/projects/new";
+		return "redirect:/projects";
 	}
 }
