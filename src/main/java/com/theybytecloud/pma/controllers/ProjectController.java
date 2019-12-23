@@ -10,12 +10,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/projects")
 public class ProjectController {
 
 	@Autowired
 	ProjectRepository projectRepository;
+
+	@GetMapping
+	public String diplayProjects(Model model) {
+		List<Project> projects = projectRepository.findAll();
+		model.addAttribute("projects", projects);
+		return "projects/list-projects";
+	}
 
 	@GetMapping("/new")
 	public String displayProjectForm(Model model) {
