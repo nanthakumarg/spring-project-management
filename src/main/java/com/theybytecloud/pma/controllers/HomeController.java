@@ -8,6 +8,7 @@ import com.theybytecloud.pma.dto.ChartData;
 import com.theybytecloud.pma.dto.EmployeeProject;
 import com.theybytecloud.pma.entities.Project;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +19,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HomeController {
 
+    @Value("${version}")
+    private String ver;
+
     private final ProjectRepository projectRepository;
     private final EmployeeRepository employeeRepository;
 
     @GetMapping("/")
     public String displayHome(Model model) throws JsonProcessingException {
+
+        model.addAttribute("versionNumber", ver);
 
         List<Project> projects = projectRepository.findAll();
         //List<Employee> employees = employeeRepository.findAll();
