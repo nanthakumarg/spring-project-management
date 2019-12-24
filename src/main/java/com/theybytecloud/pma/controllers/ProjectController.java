@@ -41,7 +41,7 @@ public class ProjectController {
 
 		model.addAttribute("allEmployees", employees);
 
-		return "projects/new-project";
+		return "projects";
 	}
 
 	@PostMapping("/save")

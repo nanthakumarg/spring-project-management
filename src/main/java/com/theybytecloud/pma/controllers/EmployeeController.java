@@ -22,6 +22,7 @@ public class EmployeeController {
     public String displayEmployees(Model model){
         List<Employee> employees = employeeRepository.findAll();
         model.addAttribute("employees", employees);
+
         return "employees/list-employees";
     }
 
@@ -31,7 +32,7 @@ public class EmployeeController {
          Employee employee = Employee.builder().build();
          model.addAttribute("employee", employee);
 
-         return "employees/new-employee";
+         return "employees";
 
      }
 
