@@ -2,7 +2,7 @@
 
 A Simple Spring Project for Learning.
 
-Follow Below steps to the application,
+Follow Below steps to run the application,
 
 ```
 make 				//will build application
