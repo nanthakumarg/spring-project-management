@@ -13,13 +13,14 @@ public class ApplicationLoggerAspect {
 
    // private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @Pointcut("within(com.thebytecloud.pma.controllers..*)")
+    @Pointcut("within(com.theybytecloud.pma.controllers..*)")
     public void definePackagePointcuts() {
 
     }
 
     @Before("definePackagePointcuts()")
     public void log() {
-        log.debug("============================");
+        log.info("============================");
+        System.out.println("******************************************************");
     }
 }

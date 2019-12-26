@@ -32,7 +32,7 @@ public class EmployeeController {
          Employee employee = Employee.builder().build();
          model.addAttribute("employee", employee);
 
-         return "employees";
+         return "employees/new-employee";
 
      }
 
@@ -41,7 +41,7 @@ public class EmployeeController {
 
         employeeRepository.save(employee);
 
-        return  "redirect:/employees/new";
+        return  "redirect:/employees";
      }
 
 

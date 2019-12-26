@@ -21,6 +21,7 @@ public class ProjectBootstrap implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+    	log.info("Loading..................===========================");
 		loadData();
 
 	}
